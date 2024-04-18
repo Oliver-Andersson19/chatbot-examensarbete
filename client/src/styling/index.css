@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  display: flex;
+  flex-direction: column;
+
+  min-height: 100svh;
+}
+
+main {
+  flex: 1;
+}
