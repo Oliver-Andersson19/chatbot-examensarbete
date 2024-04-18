@@ -1,0 +1,145 @@
+.chatbot-wrapper header {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 1.5rem;
+
+    /* comes from db */
+    /* background-color: #1636A9; */
+    color: white;
+}
+
+
+.chatbot-wrapper .chatbot-window .chatbot-chatfeed {
+    display: flex;
+
+    flex-direction: column;
+    align-items: baseline;
+
+    gap: 1rem;
+
+    height: 450px;
+    padding: 1rem;
+
+    overflow: scroll;
+
+    font-size: .9rem;
+    line-height: 1.3rem;
+}
+
+.chatbot-wrapper .chatbot-window .chatbot-chatfeed .contact-link {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+
+.chatbot-wrapper .chatbot-chatfeed .ai-bubble {
+    max-width: 75%;
+
+    padding: 1rem;
+    
+    border-radius: 10px;
+
+    overflow-wrap: break-word;
+}
+
+.chatbot-wrapper .chatbot-chatfeed .user-bubble {
+    max-width: 75%;
+
+    padding: 1rem;
+
+    align-self: flex-end;
+    background-color: #E9E9E9;
+
+    border-radius: 10px;
+
+    overflow-wrap: break-word;
+}
+
+
+.chatbot-wrapper .chatbot-window .input-field {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    background-color: white;    
+}
+
+.chatbot-wrapper .chatbot-window .input-field input:focus {
+    outline: none;
+}
+    
+
+.chatbot-wrapper .chatbot-window .input-field input {
+    width: 100%;
+
+    padding: 1.5rem;
+
+    border: none;
+}
+
+.chatbot-wrapper .chatbot-window .input-field .send-btn {
+    position: absolute;
+    right: 1.2rem;
+
+    display: grid;
+    place-items: center;
+
+    padding: .4rem;
+
+    border: none;
+    border-radius: 50%;
+    
+    color: white;
+
+    cursor: pointer;
+}
+
+.chatbot-wrapper .chatbot-window .input-field .send-btn span {
+    font-size: 1.2rem;    
+}
+
+
+.chatbot-wrapper .chatbot-open-btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    display: grid;
+    place-items: center;
+
+    padding: 1rem;
+
+    color: white;
+
+    border: none;
+    border-radius: 50%;
+
+    cursor: pointer;
+}
+
+.chatbot-wrapper .chatbot-window .chatbot-close-btn {
+    position: absolute;
+    left: 0.5rem;
+
+    display: grid;
+    place-items: center;
+
+    padding: .5rem;
+
+    background: none;
+    border: none;
+
+    color: white;
+
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+}

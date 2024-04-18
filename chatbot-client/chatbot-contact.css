@@ -1,0 +1,78 @@
+.chatbot-wrapper .chatbot-window .contact-view {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+    width: 100%;
+
+    background-color: #f6f6f6;
+}
+.chatbot-wrapper .chatbot-window .contact-view .back-btn {
+    position: absolute;
+    left: 0.5rem;
+
+    display: grid;
+    place-items: center;
+
+    padding: .5rem;
+
+    background: none;
+    border: none;
+
+    color: white;
+
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+}
+
+.chatbot-wrapper .chatbot-window .contact-view .form-container {
+    display: flex;
+    flex-direction: column;
+    
+    padding: 2rem 1rem;
+}
+
+.chatbot-wrapper .chatbot-window .contact-view .form-container label {
+    font-size: 0.8rem;
+    margin-left: .2rem;
+    margin-bottom: .2rem;
+}
+
+
+.chatbot-wrapper .chatbot-window .contact-view .form-container input {
+    margin-bottom: 1.5rem;
+    padding: .6rem;
+
+    border: 1px solid #E9E9E9;
+    border-radius: 5px;
+
+    font-size: .8rem;
+}
+
+.chatbot-wrapper .chatbot-window .contact-view .form-container textarea {
+    margin-bottom: 1.5rem;
+    padding: .6rem;
+
+    border: 1px solid #E9E9E9;
+    border-radius: 5px;
+
+    resize: none;
+
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: .8rem;
+}
+
+.chatbot-wrapper .chatbot-window .contact-view .form-container .contact-send-btn {
+    padding: .7rem;
+    color: white;
+
+    border: none;
+    border-radius: 35px;
+
+    font-weight: bold;
+    font-family: 'Roboto', Arial, sans-serif;
+}

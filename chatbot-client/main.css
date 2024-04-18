@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+@import url("chatbot-chat.css");
+@import url("chatbot-contact.css");
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+.chatbot-wrapper p {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+.chatbot-wrapper label {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', Arial, sans-serif;
+    font-weight: bold;
+}
+
+.chatbot-wrapper h1, h2, h3, h4, h5, h6 {
+    font-family: Arial, sans-serif !important;
+}
+
+
+.chatbot-wrapper .chatbot-window {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    /* height: 600px; */
+    width: 460px;
+
+    background-color: #f6f6f6;
+    color: #333;
+
+    border-radius: 10px;
+
+    display: none;
+
+    overflow: hidden;
+}
+
+
+.show {
+    display: block !important;
+}
+
+.hide {
+    display: none !important;
+}
+
+.loader {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: block;
+    margin: 0px 1rem;
+    position: relative;
+    background: #c7c7c7;
+    box-shadow: -12px 0 #c7c7c7, 12px 0 #c7c7c7;
+    box-sizing: border-box;
+    animation: shadowPulse 2s linear infinite;
+  }
+  
+  @keyframes shadowPulse {
+    33% {
+      background: #c7c7c7;
+      box-shadow: -12px 0 #787878, 12px 0 #c7c7c7;
+    }
+    66% {
+      background: #787878;
+      box-shadow: -12px 0 #c7c7c7, 12px 0 #9a9a9a;
+    }
+    100% {
+      background: #c7c7c7;
+      box-shadow: -12px 0 #c7c7c7, 12px 0 #787878;
+    }
+  }
