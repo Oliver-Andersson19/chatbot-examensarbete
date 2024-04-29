@@ -13,7 +13,7 @@ async function certValidation(req, res) {
         root: path.join(__dirname + "/../../cert/")
     };
  
-    const fileName = '7D4287E8977AE9477B619F5D32DF9A1F.txt';
+    const fileName = 'CA2E14A16132802AEFD4F79B917290AE.txt';
 
     res.sendFile(fileName, options, (err) => {
         if (err) {

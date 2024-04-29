@@ -106,10 +106,10 @@
 }
 
 
-.chatbot-wrapper .chatbot-open-btn {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+.chatbot-open-btn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
 
     display: grid;
     place-items: center;

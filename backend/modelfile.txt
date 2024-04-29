@@ -1,0 +1,14 @@
+ollama create llama2 -f modelfile.txt
+
+
+FROM llama2:latest
+TEMPLATE """[INST] <<SYS>>{{ .System }}<</SYS>>
+
+{{ .Prompt }} [/INST]
+"""
+SYSTEM """You are a chatbot implemented on a Website. Only answer question you know the answer to, and no longer answers than 2 sentences."""
+PARAMETER stop "[INST]"
+PARAMETER stop "[/INST]"
+PARAMETER stop "<<SYS>>"
+PARAMETER stop "<</SYS>>"
+PARAMETER temperature 5

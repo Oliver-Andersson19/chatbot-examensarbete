@@ -3,6 +3,9 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import LandingPage from "../pages/LandingPage";
 import App from "../App";
+import LoginPage from "../pages/LoginPage";
+import RegisterPage from "../pages/RegisterPage";
+import CreateChatbotPage from "../pages/CreateChatbotPage";
 
 export const pages = [
   // {
@@ -15,9 +18,26 @@ export const pages = [
   {
     path: "/",
     label: "Home",
-    inNav: true,
-    rightNav: false,
+    right: false,
     element: <LandingPage />,
+  },
+  {
+    path: "/login",
+    label: "Login",
+    right: true,
+    element: <LoginPage />,
+  },
+  {
+    path: "/register",
+    label: "Register",
+    right: true,
+    element: <RegisterPage />,
+  },
+  {
+    path: "/create",
+    label: "Build Chatbot",
+    right: false,
+    element: <CreateChatbotPage/>,
   },
 ];
 
