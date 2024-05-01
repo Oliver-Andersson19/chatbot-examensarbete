@@ -15,24 +15,23 @@ const chatBotClientPath = path.join(__dirname + "/../chatbot-client")
 const app = Express();
 const IP = "192.168.0.196";
 const PORT = 8080;
+const HTTPPORT = 8081
 
 
-app.use(Express.json());
 app.use(cors())
+app.use(Express.json());
 app.use(Express.urlencoded({ extended: false }));
 app.use(Express.static(chatBotClientPath));
 
-// Define a new route for HTTP
-app.get("/hello-http", (req, res) => {
-    res.send("Hello, welcome to the HTTP server!");
-});
 
-app.use("/", routes)
+app.use("/api", routes)
+
+
 
 const httpServer = http.createServer(app);
 
-httpServer.listen(80, IP, () => {
-    console.log(`HTTP Running at: ${IP}:${80}`);
+httpServer.listen(HTTPPORT, IP, () => {
+    console.log(`HTTP Running at: ${IP}:${HTTPPORT}`);
 });
 
 

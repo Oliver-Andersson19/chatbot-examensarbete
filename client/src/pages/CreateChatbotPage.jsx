@@ -23,7 +23,7 @@ function CreateChatbotPage() {
     e.preventDefault()
     if (formData.primaryColor === "" || formData.secondaryColor === "" || formData.accentColor === "" || formData.faq === "") return false;
 
-    const res = await fetchService.fetchRes("https://192.168.0.196:8080/create", "POST", { chatbotData: formData});
+    const res = await fetchService.fetchRes("/api/create", "POST", { chatbotData: formData});
     if (res.status >= 400) {
       setMsg(":(");
       return false;
@@ -37,7 +37,6 @@ function CreateChatbotPage() {
     }
   }
 
-  console.log(formData)
 
   return (
     <div className="bg-gray-100 w-full flex-1 pt-32">
@@ -61,9 +60,11 @@ function CreateChatbotPage() {
             />
             <input type="text" className="mb-5" value={formData.accentColor}/>
           </div>
+
           <div className="w-1/2 flex flex-col gap-10 justify-center items-center">
             <ChatbotPreview colorScheme={formData}></ChatbotPreview>
           </div>
+          
         </div>
 
         <textarea className="w-1/2" type="text" name="faq" placeholder="FAQ" onChange={handleInputChange}/>

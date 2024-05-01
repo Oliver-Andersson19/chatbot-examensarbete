@@ -15,7 +15,7 @@ function App() {
     (async function () {
       const hasToken = cacheService.isLoggedIn();
       if (hasToken) {
-        const res = await fetchService.fetchRes("https://192.168.0.196:8080/profile", "GET");
+        const res = await fetchService.fetchRes("/api/profile", "GET");
         if (res.status >= 400) {
           
           setIsLoggedIn(false);
@@ -33,7 +33,7 @@ function App() {
   // <script src="https://193.183.247.22:8080/js/?id=123" defer></script>
   useEffect(() => {
     const script = document.createElement("script");
-    script.src = "https://62.168.153.58:8080/js/?id=1";
+    script.src = "https://62.168.153.58:8080/api/js/?id=1";
     script.async = true;
     document.body.appendChild(script);
 

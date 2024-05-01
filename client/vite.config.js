@@ -4,17 +4,12 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   server: {
-    // proxy: {
-    //   "/api": {
-    //     target: "https://192.168.0.196:8080/",
-    //     changeOrigin: true,
-    //     secure: true,
-    //   },
-    //   "/auth": {
-    //     target: "https://192.168.0.196:8080/",
-    //     changeOrigin: true,
-    //     secure: true,
-    //   }
-    // },
+    proxy: {
+      "/api": {
+        target: "http://192.168.0.196:8081/",
+        changeOrigin: true,
+        secure: false,
+      }
+    },
   },
 });

@@ -21,7 +21,7 @@ function LoginPage() {
     e.preventDefault()
     if (formData.username === "" || formData.password === "") return false;
 
-    const res = await fetchService.fetchRes("https://192.168.0.196:8080/login", "POST", formData);
+    const res = await fetchService.fetchRes("/api/login", "POST", formData);
     if (res.status >= 400) {
       setMsg("Login failed")
       return false;

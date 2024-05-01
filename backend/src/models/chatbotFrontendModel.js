@@ -204,7 +204,7 @@ async function getChatbotJS(id, ip) {
             body: JSON.stringify({msg: query})
         }
 
-        const res = await fetch('https://192.168.0.196:8080/query/?id=${id}', options)
+        const res = await fetch('https://${ip}:8080/api/query/?id=${id}', options)
         const data = await res.json()
 
         return data.answer

@@ -21,7 +21,7 @@ function RegisterPage() {
     e.preventDefault()
     if (formData.username === "" || formData.password === "") return false;
 
-    const res = await fetchService.fetchRes("https://192.168.0.196:8080/register", "POST", formData);
+    const res = await fetchService.fetchRes("/api/register", "POST", formData);
     if (res.status >= 400) {
       setMsg("Register failed");
       console.log("err")
