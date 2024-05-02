@@ -13,6 +13,7 @@ routes.get("/js", chatbotController.serveJS)
 routes.post("/query", chatbotController.runQuery)
 
 routes.post("/create", jwtFilter.verifyToken, chatbotController.createChatbot)
+routes.get("/chatbots", jwtFilter.verifyToken, chatbotController.getChatbotList)
 
 
 // Auth
