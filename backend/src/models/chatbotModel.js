@@ -1,7 +1,7 @@
 import connection from "../config/database.js";
 
 
-async function createChatbot(faq, colorScheme, userId) {
+async function createChatbot(faq, colorScheme, companyName, userId) {
     
     const [insertColorScheme] = await connection.execute(
         "INSERT INTO colorScheme (primaryColor, secondaryColor, accentColor) VALUES (?, ?, ?)",
@@ -14,8 +14,15 @@ async function createChatbot(faq, colorScheme, userId) {
     );
 
     const [insertChatbot] = await connection.execute(
-        "INSERT INTO chatbots (chatbotInformationId, colorSchemeId, userId) VALUES (?, ?, ?)",
-        [insertChatbotInformation.insertId, insertColorScheme.insertId, userId]
+        "INSERT INTO chatbots (chatbotInformationId, colorSchemeId, companyName, userId) VALUES (?, ?, ?, ?)",
+        [insertChatbotInformation.insertId, insertColorScheme.insertId, companyName, userId]
+    );
+
+    const scriptTag = `<script src="https://62.168.153.58:8080/api/js/?id=${insertChatbot.insertId}" async></script>`;
+
+    const [insertScripttag] = await connection.execute(
+        "UPDATE chatbots SET scriptTag = ? WHERE id = ?",
+        [scriptTag, insertChatbot.insertId]
     );
 
     return insertChatbot.insertId;
@@ -31,4 +38,16 @@ async function getChatbotInformation(chatbotId) {
     return chatbotInformation;
 }
 
-export default { createChatbot, getChatbotInformation };
+async function getChatbotsByUserId(userId) {
+    const [chatbots] = await connection.execute(
+        `SELECT cb.id, cb.colorSchemeId, cb.userId, cb.chatbotInformationId, cb.companyName, cb.scriptTag, ci.FAQ
+        FROM chatbots cb
+        JOIN chatbotInformation ci ON cb.chatbotInformationId = ci.id
+        WHERE cb.userId = ?`,
+        [userId]
+    );
+    
+    return chatbots;
+}
+
+export default { createChatbot, getChatbotInformation, getChatbotsByUserId };
