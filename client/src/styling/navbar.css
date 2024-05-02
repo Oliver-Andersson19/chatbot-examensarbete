@@ -61,7 +61,7 @@ header .nav-list .right {
 @media screen and (min-width: 1024px) {
     .page-header {
         position: relative;
-        background-color: white;
+        /* background-color: white; */
 
         display: flex;
         align-items: center;
@@ -83,6 +83,7 @@ header .nav-list .right {
         max-width: 1024px;
 
         color: black;
+        background: none;
         box-shadow: none;
 
     }

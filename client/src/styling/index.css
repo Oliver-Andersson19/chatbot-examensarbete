@@ -29,7 +29,7 @@
 #root::after {
   content: '';
   position: absolute;
-  top:-20rem;
+  top:-30rem;
   left: -35%;
 
   width: 100%;
@@ -40,7 +40,7 @@
   filter: blur(20px);
 
   background: rgb(105,52,156);
-  background: radial-gradient(circle, rgba(105,52,156,1) 0%, rgba(255,255,255,1) 49%);
+  background: radial-gradient(circle, rgb(178, 133, 220) 0%, rgba(255,255,255,1) 49%);
 
 }
 
@@ -51,6 +51,8 @@ main {
   flex: 1;
 }
 
+
+
 .preview-wrapper .chatbot-window {
   display: flex !important;
 }
@@ -58,4 +60,9 @@ main {
 .preview-wrapper .chatbot-open-btn {
   position: static !important;
 
+}
+
+
+*:focus {
+  outline: none;
 }

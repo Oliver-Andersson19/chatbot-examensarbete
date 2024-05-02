@@ -39,7 +39,8 @@
     flex-direction: column;
 
     /* height: 600px; */
-    width: 460px;
+    width: 25em;
+    /* width: 460px; */
 
     background-color: #f6f6f6;
     color: #333;
@@ -71,19 +72,27 @@
     box-shadow: -12px 0 #c7c7c7, 12px 0 #c7c7c7;
     box-sizing: border-box;
     animation: shadowPulse 2s linear infinite;
+}
+
+
+@keyframes shadowPulse {
+  33% {
+    background: #c7c7c7;
+    box-shadow: -12px 0 #787878, 12px 0 #c7c7c7;
   }
-  
-  @keyframes shadowPulse {
-    33% {
-      background: #c7c7c7;
-      box-shadow: -12px 0 #787878, 12px 0 #c7c7c7;
-    }
-    66% {
-      background: #787878;
-      box-shadow: -12px 0 #c7c7c7, 12px 0 #9a9a9a;
-    }
-    100% {
-      background: #c7c7c7;
-      box-shadow: -12px 0 #c7c7c7, 12px 0 #787878;
-    }
+  66% {
+    background: #787878;
+    box-shadow: -12px 0 #c7c7c7, 12px 0 #9a9a9a;
   }
+  100% {
+    background: #c7c7c7;
+    box-shadow: -12px 0 #c7c7c7, 12px 0 #787878;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .chatbot-wrapper {
+    font-size: 1.2rem;
+  } 
+}
