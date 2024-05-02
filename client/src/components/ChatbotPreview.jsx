@@ -48,11 +48,10 @@ function ChatbotPreview(props) {
                     </div>
                 </div>
             </div>
-            <button style={{backgroundColor: props.colorScheme.primaryColor}} className="chatbot-open-btn">
+            {/* <button style={{backgroundColor: props.colorScheme.primaryColor}} className="chatbot-open-btn">
                 <span className="material-symbols-outlined">chat_bubble</span>
-            </button>   
+            </button>  */}
         </div>
-        
     </>
     )
 }

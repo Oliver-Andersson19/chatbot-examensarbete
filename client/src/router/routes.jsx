@@ -6,6 +6,7 @@ import App from "../App";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import CreateChatbotPage from "../pages/CreateChatbotPage";
+import ListChatbotsPage from "../pages/ListChatbotsPage";
 
 export const pages = [
   // {
@@ -39,6 +40,12 @@ export const pages = [
     right: false,
     element: <CreateChatbotPage/>,
   },
+  {
+    path: "/chatbots",
+    label: "My Bots",
+    right: true,
+    element: <ListChatbotsPage/>,
+  }
 ];
 
 export const router = createBrowserRouter([

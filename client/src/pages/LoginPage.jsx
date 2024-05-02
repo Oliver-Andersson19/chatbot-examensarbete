@@ -32,7 +32,7 @@ function LoginPage() {
 
       setIsLoggedIn(true);
       setMsg("Login successfull")
-      setTimeout(() => navigate("/create"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     }
   }
 

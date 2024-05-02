@@ -10,7 +10,7 @@ function LandingPage() {
         <div className="">
           <h2 className="text-7xl w-96 leading-tight">AI chatbot trained with your data.</h2>
           <p className="w-96 mt-2">Resolve 70% of customer support queries instantly. Save time for your team and customers with AI-powered answers.</p>
-          <NavLink to="/create" className="inline-block bg-black text-white rounded-full px-7 py-4 mt-5">Get Started</NavLink>
+          <NavLink to="/create" className="inline-block bg-black text-white rounded-full px-7 py-4 mt-5 hover:text-black hover:bg-inherit outline-width-2 outline outline-black transition">Get Started</NavLink>
         </div>
         <div className="h-full">
           <img className="w-80" src={previewImg}/>

@@ -3,6 +3,7 @@ import { NavLink, useOutletContext } from 'react-router-dom'
 import '../styling/navbar.css'
 import { IoClose, IoMenu, IoOpen } from "react-icons/io5";
 import { pages } from "../router/routes";
+import CacheService from "../service/CacheService";
 
 function Navbar({ isLoggedIn, setIsLoggedIn}) {
   
@@ -11,6 +12,11 @@ function Navbar({ isLoggedIn, setIsLoggedIn}) {
 
   const toggleNav = () => {
     setNavOpen(!navOpen)
+  }
+
+  function logoutUser() {
+    CacheService.removeLocalValue("token");
+    setIsLoggedIn(false);
   }
 
   useEffect(() => {
@@ -41,8 +47,12 @@ function Navbar({ isLoggedIn, setIsLoggedIn}) {
           })}
 
           <div className="right">            
-            <NavLink to="/login">Login</NavLink>
-            <NavLink to="/register" className="register-btn">Register</NavLink>
+            {isLoggedIn ? 
+            <NavLink onClick={logoutUser}>Logout</NavLink> : 
+            <NavLink to="/login">Login</NavLink>}
+            {isLoggedIn ? 
+            <NavLink to="/chatbots" className="register-btn">My Bots</NavLink> : 
+            <NavLink to="/register" className="register-btn">Register</NavLink>}
           </div>
 
       </div>

