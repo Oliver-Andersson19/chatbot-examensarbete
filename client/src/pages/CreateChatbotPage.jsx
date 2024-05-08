@@ -5,10 +5,19 @@ import { useOutletContext, Navigate, useNavigate } from "react-router-dom";
 import { HexColorPicker } from 'react-colorful';
 import ChatbotPreview from "../components/ChatbotPreview";
 import ColorBlob from "../components/ColorBlob";
+import Line from "../components/Line";
 
 function CreateChatbotPage() {
 
-  const [formData, setFormData] = useState({primaryColor: "#292929", secondaryColor: "#3A8CD9", accentColor: "#E8F2FF", faq: "", companyName: ""})
+  const [formData, setFormData] = useState({
+    primaryColor: "#292929",
+    secondaryColor: "#3A8CD9",
+    accentColor: "#E8F2FF",
+    headerText: "Chatta med oss",
+    inputPlaceholder: "Ställ din fråga här...",
+    faq: "",
+    companyName: ""
+  })
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const { isLoggedIn } = useOutletContext();
@@ -52,10 +61,11 @@ function CreateChatbotPage() {
   return (
     <div className="w-full flex-1 p-16 lg:mt-10 max-w-screen-lg mx-auto rounded-xl bg-white shadow-lg">
       
-      <h2 className="text-6xl leading-tight mb-2">Create Your Own Chatbot with Custom Colors and Text!</h2>
-      <p className="w-96 mb-20 ml-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aut, laborum excepturi saepe molestias deserunt dolorum doloribus soluta.</p>
+      <h2 className="text-4xl lg:text-6xl leading-tight mb-2">Create Your Own Chatbot with Custom Colors and Text!</h2>
+      <p className="max-w-96 mb-20 ml-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aut, laborum excepturi saepe molestias deserunt dolorum doloribus soluta.</p>
       
-      <div className="h-1 w-1/2 mx-auto mb-32 bg-purple-900"></div>
+      
+      <Line></Line>
       
       <div className="flex flex-col items-center gap-20
                       lg:flex-row lg:justify-between lg:items-baseline
@@ -83,21 +93,31 @@ function CreateChatbotPage() {
             })}
           </div>
           <input value={formData.accentColor} type="text" className="border-b border-black mb-5 w-20 mt-2 p-1" name="accentColor" onChange={handleInputChange}/>
+          
+          <div className="flex flex-col mt-6">
+            <h2 className="mb-2">Header Text</h2>
+            <input name="headerText" type="text" value={formData.headerText} onChange={handleInputChange} className="border-b border-black mb-4 p-2 text-sm"/>
+            <h2 className="mb-2">Message Placeholder</h2>
+            <input name="inputPlaceholder" type="text" value={formData.inputPlaceholder} onChange={handleInputChange} className="border-b border-black mb-4 p-2 text-sm"/>
+
+          </div>
+
+
         </div>
         
         
         
         <div className="mb-32">
-          <ChatbotPreview colorScheme={formData}></ChatbotPreview>
+          <ChatbotPreview previewData={formData}></ChatbotPreview>
         </div>
 
       </div>
 
       
-      <h2 className="text-6xl leading-tight mb-2">Now Just Fill in Information about Your Company!</h2>
-      <p className="w-96 mb-20 ml-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aut, laborum excepturi saepe molestias deserunt dolorum doloribus soluta.</p>
+      <h2 className="text-4xl lg:text-6xl leading-tight mb-2">Now Just Fill In Information About Your Company!</h2>
+      <p className="max-w-96 mb-20 ml-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum aut, laborum excepturi saepe molestias deserunt dolorum doloribus soluta.</p>
       
-      <div className="h-1 w-1/2 mx-auto mb-32 bg-purple-900"></div>
+      <Line></Line>
 
       <div className="flex flex-col gap-5 items-center w-full mb-20">
           
