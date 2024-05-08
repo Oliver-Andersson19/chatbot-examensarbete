@@ -38,7 +38,7 @@ async function runQuery(req, res) {
 async function createChatbot(req, res) {
     const username = req.decoded.username;
     const { chatbotData } = req.body;
-    const faq = chatbotData.faq;
+    const url = chatbotData.url;
     const companyName = chatbotData.companyName;
     const headerText = chatbotData.headerText;
     const inputPlaceholder = chatbotData.inputPlaceholder;
@@ -59,7 +59,7 @@ async function createChatbot(req, res) {
         const userInfo = await userModel.getUser(username)
         const userId = userInfo[0].id
 
-        const chatbotId = await chatbotModel.createChatbot(headerText, inputPlaceholder, faq, colorScheme, companyName, userId);
+        const chatbotId = await chatbotModel.createChatbot(headerText, inputPlaceholder, url, colorScheme, companyName, userId);
   
         res.status(200).json(chatbotId);
       

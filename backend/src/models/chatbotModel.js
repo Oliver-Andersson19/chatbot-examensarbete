@@ -1,12 +1,17 @@
 import connection from "../config/database.js";
+import cheerioWebscrape from "../services/cheerioWebscrape.js"
 
-
-async function createChatbot(headerText, inputPlaceholder, faq, colorScheme, companyName, userId) {
+async function createChatbot(headerText, inputPlaceholder, url, colorScheme, companyName, userId) {
+    
+    const faq = await cheerioWebscrape.scrapeURL(url);
+    
     
     const [insertColorScheme] = await connection.execute(
         "INSERT INTO colorScheme (primaryColor, secondaryColor, accentColor) VALUES (?, ?, ?)",
         [colorScheme.primaryColor, colorScheme.secondaryColor, colorScheme.accentColor]
     );
+
+
 
     const [insertChatbotInformation] = await connection.execute(
         "INSERT INTO chatbotInformation (FAQ) VALUES (?)",

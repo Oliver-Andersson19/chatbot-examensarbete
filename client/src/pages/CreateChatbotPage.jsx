@@ -15,8 +15,7 @@ function CreateChatbotPage() {
     accentColor: "#E8F2FF",
     headerText: "Chatta med oss",
     inputPlaceholder: "Ställ din fråga här...",
-    faq: "",
-    companyName: ""
+    url: ""
   })
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
@@ -122,7 +121,7 @@ function CreateChatbotPage() {
       <div className="flex flex-col gap-5 items-center w-full mb-20">
           
         <input className="w-full border p-2 lg:w-2/3" type="text" name="companyName" placeholder="Company Name" onChange={handleInputChange}/>
-        <textarea className="w-full border p-2 lg:w-2/3" rows={5} type="text" name="faq" placeholder="FAQ" onChange={handleInputChange}/>
+        <input className="w-full border p-2 lg:w-2/3" type="text" name="url" placeholder="URL to your about page" onChange={handleInputChange}/>
         <button onClick={handleSubmit} className="bg-primary text-white p-2 w-full lg:w-2/3">Create Chatbot!</button>
       </div>
       
