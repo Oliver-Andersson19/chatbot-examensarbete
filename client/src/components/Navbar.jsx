@@ -51,8 +51,8 @@ function Navbar({ isLoggedIn, setIsLoggedIn}) {
             <NavLink onClick={logoutUser}>Logout</NavLink> : 
             <NavLink to="/login">Login</NavLink>}
             {isLoggedIn ? 
-            <NavLink to="/chatbots" className="register-btn">My Bots</NavLink> : 
-            <NavLink to="/register" className="register-btn">Register</NavLink>}
+            <NavLink to="/chatbots" className="register-btn hover:text-black hover:bg-inherit outline-width-2 outline outline-black transition">My Bots</NavLink> : 
+            <NavLink to="/register" className="register-btn hover:text-black hover:bg-inherit outline-width-2 outline outline-black transition">Register</NavLink>}
           </div>
 
       </div>

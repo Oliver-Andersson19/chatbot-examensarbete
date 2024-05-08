@@ -27,7 +27,7 @@ function ListChatbotsPage() {
             { !chatbotToView && <>
 
                 <h2 className="text-6xl leading-tight mb-2">Your Chatbot Library</h2>
-                <p className="w-96 mb-20 ml-2">See your list of created chatbots below. Click on a chatbot to view installation instructions and start using it seamlessly in your projects.</p>
+                <p className="w-96 mb-16 ml-2">See your list of created chatbots below. Click on a chatbot to view installation instructions and start using it seamlessly in your projects.</p>
         
                 {data && data.map((chatbot) => {
                     return (<ChatbotItem key={chatbot.id} chatbot={chatbot} setView={setView}></ChatbotItem>)

@@ -9,18 +9,18 @@ function ChatbotPreview(props) {
             <div className="chatbot-window flex shadow-xl">
 
                 <div className="chat-view">
-                    <header style={{backgroundColor: props.colorScheme.primaryColor}}>
+                    <header style={{backgroundColor: props.previewData.primaryColor}}>
                         <button className="chatbot-close-btn"><span className="material-symbols-outlined">close</span></button>
-                        <h3>Chatta med oss</h3>
+                        <h3>{props.previewData.headerText}</h3>
                     </header>
                     <div className="chatbot-chatfeed">
-                        <p style={{backgroundColor: props.colorScheme.accentColor}} className="ai-bubble">
+                        <p style={{backgroundColor: props.previewData.accentColor}} className="ai-bubble">
                         Hej och välkommen till vår virtuella assistent! <br/><br/> Här får du svar på vanliga frågor, om du vill skicka oss ett mail istället <span class="contact-link">klicka här.</span> <br/><br/>Vad kan vi hjälpa dig med?
                         </p>
                     </div>
                     <div className="input-field">
-                        <input type="text" placeholder="Ställ din fråga här..."/>
-                        <button style={{backgroundColor: props.colorScheme.secondaryColor}} className="send-btn"><span className="material-symbols-outlined">send</span></button>
+                        <input type="text" placeholder={props.previewData.inputPlaceholder}/>
+                        <button style={{backgroundColor: props.previewData.secondaryColor}} className="send-btn"><span className="material-symbols-outlined">send</span></button>
                     </div>
                 </div>
                 

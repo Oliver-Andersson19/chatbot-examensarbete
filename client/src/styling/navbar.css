@@ -113,4 +113,9 @@ header .nav-list .right {
 
         border-radius: 25px;
     }
+
+    
+    .page-header .register-btn:focus:not(:link:active) {  
+        outline: solid black;  
+    }
 }
