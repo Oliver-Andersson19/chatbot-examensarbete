@@ -10,6 +10,11 @@ async function getChatbotHTML(id) {
         [id]
     );
 
+    const [chatbot] = await connection.execute(
+        `SELECT * FROM chatbots WHERE id = ?`,
+        [id]
+    );
+
     return /*html*/`
     
     <style>
@@ -36,7 +41,7 @@ async function getChatbotHTML(id) {
         <div className="chat-view">
             <header>
                 <button class="chatbot-close-btn"><span class="material-symbols-outlined">close</span></button>
-                <h3>Chatta med oss</h3>
+                <h3>${chatbot[0].headerText}</h3>
             </header>
             <div class="chatbot-chatfeed">
                 <p class="ai-bubble">
@@ -44,7 +49,7 @@ async function getChatbotHTML(id) {
                 </p>
             </div>
             <div class="input-field">
-                <input type="text" placeholder="Ställ din fråga här..."/>
+                <input type="text" placeholder="${chatbot[0].inputPlaceholder}"/>
                 <button class="send-btn"><span class="material-symbols-outlined">send</span></button>
             </div>
         </div>
@@ -102,7 +107,7 @@ async function getChatbotJS(id, ip) {
     // Create chatbot wrapper
     const chatbotWrapper = document.createElement("div");
     chatbotWrapper.className = "chatbot-wrapper";
-    chatbotWrapper.style.position = "absolute";
+    chatbotWrapper.style.position = "fixed";
     chatbotWrapper.style.right = "15px";
     chatbotWrapper.style.bottom = "15px";
 

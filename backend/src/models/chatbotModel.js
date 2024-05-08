@@ -1,7 +1,7 @@
 import connection from "../config/database.js";
 
 
-async function createChatbot(faq, colorScheme, companyName, userId) {
+async function createChatbot(headerText, inputPlaceholder, faq, colorScheme, companyName, userId) {
     
     const [insertColorScheme] = await connection.execute(
         "INSERT INTO colorScheme (primaryColor, secondaryColor, accentColor) VALUES (?, ?, ?)",
@@ -14,8 +14,8 @@ async function createChatbot(faq, colorScheme, companyName, userId) {
     );
 
     const [insertChatbot] = await connection.execute(
-        "INSERT INTO chatbots (chatbotInformationId, colorSchemeId, companyName, userId) VALUES (?, ?, ?, ?)",
-        [insertChatbotInformation.insertId, insertColorScheme.insertId, companyName, userId]
+        "INSERT INTO chatbots (headerText, inputPlaceholder, chatbotInformationId, colorSchemeId, companyName, userId) VALUES (?, ?, ?, ?, ?, ?)",
+        [headerText, inputPlaceholder, insertChatbotInformation.insertId, insertColorScheme.insertId, companyName, userId]
     );
 
     const scriptTag = `<script src="https://62.168.153.58:8080/api/js/?id=${insertChatbot.insertId}" async></script>`;

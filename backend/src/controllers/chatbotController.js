@@ -40,6 +40,9 @@ async function createChatbot(req, res) {
     const { chatbotData } = req.body;
     const faq = chatbotData.faq;
     const companyName = chatbotData.companyName;
+    const headerText = chatbotData.headerText;
+    const inputPlaceholder = chatbotData.inputPlaceholder;
+
 
     const colorScheme = {
         primaryColor: chatbotData.primaryColor,
@@ -56,7 +59,7 @@ async function createChatbot(req, res) {
         const userInfo = await userModel.getUser(username)
         const userId = userInfo[0].id
 
-        const chatbotId = await chatbotModel.createChatbot(faq, colorScheme, companyName, userId);
+        const chatbotId = await chatbotModel.createChatbot(headerText, inputPlaceholder, faq, colorScheme, companyName, userId);
   
         res.status(200).json(chatbotId);
       
