@@ -3,13 +3,15 @@ import { Ollama } from "langchain/llms/ollama";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { RetrievalQAChain, loadQAStuffChain } from "langchain/chains";
+import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
+
 import { Document } from "langchain/document";
 import chatbotModel from "./chatbotModel.js";
 import { PromptTemplate } from "@langchain/core/prompts";
 
 const ollama = new Ollama({
     baseUrl: "http://localhost:11434",
-    model: "mistral",
+    model: "llama2",
     temperature: 0.5,
 });
 
@@ -20,16 +22,20 @@ const ollama = new Ollama({
 // Function to create a new RetrievalQAChain instance for a given ID
 async function createChainForId(id) {
     const chatbotInformation = await chatbotModel.getChatbotInformation(id)
-    const faq = chatbotInformation[0].FAQ
+    const url = chatbotInformation[0].FAQ
+
+    console.log(url)
+
+        
+    const loader = new CheerioWebBaseLoader(url);
+    const data = await loader.load();
 
     const textSplitter = new RecursiveCharacterTextSplitter({
         chunkSize: 500,
         chunkOverlap: 50,
     });
 
-    const allSplits = await textSplitter.splitDocuments([
-        new Document({ pageContent: faq})
-    ]);
+    const allSplits = await textSplitter.splitDocuments(data);
 
 
     const embeddings = new OllamaEmbeddings();
@@ -39,10 +45,9 @@ async function createChainForId(id) {
     );
 
     const promptTemplate = `
-    You are a helpful chatbot implemented on a Website.
-    If needed use the following pieces of frequently asked questions in the context to answer the question at the end.
-    If you cant find an answer in the context, just say that you don't know, don't try to make up an answer.
-    Answer can max be 1 sentence.
+    You are a helpful chatbot implemented on a Website designed to help users of the website with answers not longer than 1 sentence.
+    If needed use the content of the website provided in the context to answer the question at the end.
+    If you cant find an answer in the context, just say ask the user to rephrase the question, do not try to make up an answer.
     \n\nContext: {context}\n\nQuestion: {question}\nHelpful Answer:`;
     const qaPrompt = PromptTemplate.fromTemplate(promptTemplate);
 
