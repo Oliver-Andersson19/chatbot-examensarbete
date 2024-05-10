@@ -3,7 +3,8 @@ import { Ollama } from "langchain/llms/ollama";
 import { RecursiveCharacterTextSplitter } from "langchain/text_splitter";
 import { MemoryVectorStore } from "langchain/vectorstores/memory";
 import { RetrievalQAChain, loadQAStuffChain } from "langchain/chains";
-import { CheerioWebBaseLoader } from "langchain/document_loaders/web/cheerio";
+import webscrape from "../services/webscrape.js";
+import cheerio, { text } from 'cheerio';
 
 import { Document } from "langchain/document";
 import chatbotModel from "./chatbotModel.js";
@@ -11,24 +12,44 @@ import { PromptTemplate } from "@langchain/core/prompts";
 
 const ollama = new Ollama({
     baseUrl: "http://localhost:11434",
-    model: "llama2",
+    model: "llama3",
     temperature: 0.5,
 });
 
 
-// You are a chatbot implemented on Visimedias webpage made to answer customers questions about Visimedia.
-// Answers should be helpful and short. Only answer questions you know the answer to.
 
-// Function to create a new RetrievalQAChain instance for a given ID
 async function createChainForId(id) {
     const chatbotInformation = await chatbotModel.getChatbotInformation(id)
     const url = chatbotInformation[0].FAQ
 
-    console.log(url)
+    const $ = cheerio.load(await webscrape.scrapeURL(url));
 
-        
-    const loader = new CheerioWebBaseLoader(url);
-    const data = await loader.load();
+    function extractVisibleText(element) {
+        let text = '';
+    
+        $(element).contents().each((_, node) => {
+            if (node.nodeType === 3) {
+                text += $(node).text().trim() + ' ';
+            } else {
+                if (!$(node).is('script, noscript, iframe')) {
+                    text += extractVisibleText(node) + ' ';
+                }
+            }
+        });
+    
+        return text.trim();
+    }
+
+    const visibleText = extractVisibleText($('body'));
+
+    console.log(visibleText);
+
+
+
+
+
+
+
 
     const textSplitter = new RecursiveCharacterTextSplitter({
         chunkSize: 500,
@@ -38,7 +59,7 @@ async function createChainForId(id) {
     const allSplits = await textSplitter.splitDocuments(data);
 
 
-    const embeddings = new OllamaEmbeddings();
+    const embeddings = new OllamaEmbeddings({model: "llama3"});
     const vectorStore = await MemoryVectorStore.fromDocuments(
         allSplits,
         embeddings
@@ -49,7 +70,10 @@ async function createChainForId(id) {
     If needed use the content of the website provided in the context to answer the humans question. Do not mention the provided context.
     Do not use the content of the context if it is not relevant to the question.
     If you cant find an answer in the context do not try to make up an answer simply say that you could not find an answer to the humans question.
-    \n\nContext: {context}\n\nQuestion: {question}\nHelpful Answer:`;
+    \n\nContext: {context}\n\nQuestion: {question}\nShort Answer:`;
+    // const promptTemplate = `
+    // Respond to the humans prompt. Do not use the context provided.\n
+    // \n\nContext: {context}\n\nQuestion: {question}\nShort Answer:`;
     const qaPrompt = PromptTemplate.fromTemplate(promptTemplate);
 
     const retriever = vectorStore.asRetriever();

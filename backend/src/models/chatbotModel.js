@@ -1,5 +1,5 @@
 import connection from "../config/database.js";
-import cheerioWebscrape from "../services/cheerioWebscrape.js"
+import cheerioWebscrape from "../services/webscrape.js"
 
 async function createChatbot(headerText, inputPlaceholder, url, colorScheme, companyName, userId) {
 
