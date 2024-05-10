@@ -19,8 +19,10 @@ const ollama = new Ollama({
 
 
 async function createChainForId(id) {
-    const chatbotInformation = await chatbotModel.getChatbotInformation(id)
-    const url = chatbotInformation[0].FAQ
+    let url = await chatbotModel.getChatbotURL(id)
+    url = url[0].URL
+
+    console.log(url)
 
     const $ = cheerio.load(await webscrape.scrapeURL(url));
 
@@ -40,23 +42,16 @@ async function createChainForId(id) {
         return text.trim();
     }
 
-    const visibleText = extractVisibleText($('body'));
-
-    console.log(visibleText);
-
-
-
-
-
-
-
+    const data = extractVisibleText($('body'));
 
     const textSplitter = new RecursiveCharacterTextSplitter({
         chunkSize: 500,
         chunkOverlap: 50,
     });
 
-    const allSplits = await textSplitter.splitDocuments(data);
+    const allSplits = await textSplitter.splitDocuments([
+        new Document({ pageContent: data }),
+    ]);
 
 
     const embeddings = new OllamaEmbeddings({model: "llama3"});
@@ -65,15 +60,13 @@ async function createChainForId(id) {
         embeddings
     );
 
+    
     const promptTemplate = `
     You are a helpful chatbot implemented on a Website. Limit your answers to a maximum of 2 sentences.
     If needed use the content of the website provided in the context to answer the humans question. Do not mention the provided context.
     Do not use the content of the context if it is not relevant to the question.
-    If you cant find an answer in the context do not try to make up an answer simply say that you could not find an answer to the humans question.
     \n\nContext: {context}\n\nQuestion: {question}\nShort Answer:`;
-    // const promptTemplate = `
-    // Respond to the humans prompt. Do not use the context provided.\n
-    // \n\nContext: {context}\n\nQuestion: {question}\nShort Answer:`;
+
     const qaPrompt = PromptTemplate.fromTemplate(promptTemplate);
 
     const retriever = vectorStore.asRetriever();

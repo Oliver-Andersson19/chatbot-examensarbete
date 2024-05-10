@@ -8,16 +8,14 @@ async function createChatbot(headerText, inputPlaceholder, url, colorScheme, com
         [colorScheme.primaryColor, colorScheme.secondaryColor, colorScheme.accentColor]
     );
 
-
-
-    const [insertChatbotInformation] = await connection.execute(
-        "INSERT INTO chatbotInformation (FAQ) VALUES (?)",
-        [url]
+    const [insertChatbot] = await connection.execute(
+        "INSERT INTO chatbots (headerText, inputPlaceholder, colorSchemeId, companyName, userId) VALUES (?, ?, ?, ?, ?)",
+        [headerText, inputPlaceholder, insertColorScheme.insertId, companyName, userId]
     );
 
-    const [insertChatbot] = await connection.execute(
-        "INSERT INTO chatbots (headerText, inputPlaceholder, chatbotInformationId, colorSchemeId, companyName, userId) VALUES (?, ?, ?, ?, ?, ?)",
-        [headerText, inputPlaceholder, insertChatbotInformation.insertId, insertColorScheme.insertId, companyName, userId]
+    const [chatbotDataURLId] = await connection.execute(
+        "INSERT INTO chatbotDataURLs (chatbotId, URL) VALUES (?, ?)",
+        [insertChatbot.insertId, url]
     );
 
     const scriptTag = `<script src="https://62.168.153.58:8080/api/js/?id=${insertChatbot.insertId}" async></script>`;
@@ -30,21 +28,21 @@ async function createChatbot(headerText, inputPlaceholder, url, colorScheme, com
     return insertChatbot.insertId;
 }
 
-
-async function getChatbotInformation(chatbotId) {
-    const [chatbotInformation] = await connection.execute(
-        "SELECT ci.FAQ FROM chatbots cb JOIN chatbotInformation ci ON cb.chatbotInformationId = ci.id WHERE cb.id = ?",
+// redo
+async function getChatbotURL(chatbotId) {
+    const [chatbotDataURL] = await connection.execute(
+        "SELECT URL FROM chatbotDataURLs WHERE chatbotId = ?",
         [chatbotId]
     );
     
-    return chatbotInformation;
+    return chatbotDataURL;
 }
 
+// redo
 async function getChatbotsByUserId(userId) {
     const [chatbots] = await connection.execute(
-        `SELECT cb.id, cb.colorSchemeId, cb.userId, cb.chatbotInformationId, cb.companyName, cb.scriptTag, ci.FAQ
+        `SELECT cb.id, cb.colorSchemeId, cb.userId, cb.companyName, cb.scriptTag
         FROM chatbots cb
-        JOIN chatbotInformation ci ON cb.chatbotInformationId = ci.id
         WHERE cb.userId = ?`,
         [userId]
     );
@@ -52,4 +50,4 @@ async function getChatbotsByUserId(userId) {
     return chatbots;
 }
 
-export default { createChatbot, getChatbotInformation, getChatbotsByUserId };
+export default { createChatbot, getChatbotURL, getChatbotsByUserId };
