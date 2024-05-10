@@ -45,9 +45,10 @@ async function createChainForId(id) {
     );
 
     const promptTemplate = `
-    You are a helpful chatbot implemented on a Website designed to help users of the website with answers not longer than 1 sentence.
-    If needed use the content of the website provided in the context to answer the question at the end.
-    If you cant find an answer in the context, just say ask the user to rephrase the question, do not try to make up an answer.
+    You are a helpful chatbot implemented on a Website. Limit your answers to a maximum of 2 sentences.
+    If needed use the content of the website provided in the context to answer the humans question. Do not mention the provided context.
+    Do not use the content of the context if it is not relevant to the question.
+    If you cant find an answer in the context do not try to make up an answer simply say that you could not find an answer to the humans question.
     \n\nContext: {context}\n\nQuestion: {question}\nHelpful Answer:`;
     const qaPrompt = PromptTemplate.fromTemplate(promptTemplate);
 
