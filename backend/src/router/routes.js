@@ -15,6 +15,8 @@ routes.post("/query", chatbotController.runQuery)
 routes.post("/create", jwtFilter.verifyToken, chatbotController.createChatbot)
 routes.get("/chatbots", jwtFilter.verifyToken, chatbotController.getChatbotList)
 
+routes.post("/mail", chatbotController.sendContactMail)
+
 
 // Auth
 routes.post("/login", authController.login);
