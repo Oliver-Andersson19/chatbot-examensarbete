@@ -43,6 +43,3 @@ const httpsServer = https.createServer({
 httpsServer.listen(PORT, IP, () => {
     console.log(`HTTPS Running at: ${IP}:${PORT}`);
 });
-
-
-import mailService from "./src/services/mailService.js";

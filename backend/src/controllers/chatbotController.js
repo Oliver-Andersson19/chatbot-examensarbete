@@ -4,6 +4,7 @@ import chatbotFrontendModel from '../models/chatbotFrontendModel.js';
 import chatbotModel from '../models/chatbotModel.js';
 import ollamaModel from '../models/ollamaModel.js';
 import userModel from '../models/userModel.js';
+import mailService from '../services/mailService.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -90,5 +91,21 @@ async function getChatbotList(req, res) {
     }
 }
 
+async function sendContactMail(req, res) {
+    const email = req.body.email;
+    const name = req.body.name;
+    const phone = req.body.phone;
+    const msg = req.body.msg;
+    
 
-export default { serveJS, runQuery, createChatbot, getChatbotList }
+    try {
+        mailService.sendMail(email, name, phone, msg)
+        res.status(200).json({msg: "Email sent"})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({ error: "Internal Server Error" });
+    }
+}
+
+
+export default { serveJS, runQuery, createChatbot, getChatbotList, sendContactMail }
