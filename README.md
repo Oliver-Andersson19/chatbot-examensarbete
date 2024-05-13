@@ -1,4 +1,4 @@
-#Chatbot Examensarbete
+# Chatbot Examensarbete
 
 Detta repository innehåller utvecklingen av ett chattbotsystem som är utformat för att förstå användares frågor och ge relevanta svar. Chattboten använder en
 serverbaserad backend och kan enkelt integreras på webbsidor genom att inkludera en script-tag. Den använder en lokal AI-modell för att förstå frågor.
