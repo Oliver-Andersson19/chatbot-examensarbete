@@ -41,6 +41,7 @@ async function createChatbot(req, res) {
     const { chatbotData } = req.body;
     const url = chatbotData.url;
     const companyName = chatbotData.companyName;
+    const email = chatbotData.email;
     const headerText = chatbotData.headerText;
     const inputPlaceholder = chatbotData.inputPlaceholder;
 
@@ -60,7 +61,7 @@ async function createChatbot(req, res) {
         const userInfo = await userModel.getUser(username)
         const userId = userInfo[0].id
 
-        const chatbotId = await chatbotModel.createChatbot(headerText, inputPlaceholder, url, colorScheme, companyName, userId);
+        const chatbotId = await chatbotModel.createChatbot(headerText, inputPlaceholder, url, colorScheme, companyName, email, userId);
   
         res.status(200).json(chatbotId);
       
@@ -92,14 +93,22 @@ async function getChatbotList(req, res) {
 }
 
 async function sendContactMail(req, res) {
+    const id = req.query.id;
+
     const email = req.body.email;
     const name = req.body.name;
     const phone = req.body.phone;
     const msg = req.body.msg;
-    
 
+    
+    
+    console.log(id)    
+    
     try {
-        mailService.sendMail(email, name, phone, msg)
+        const chatbot = await chatbotModel.getChatbotById(id)
+        const emailTo = chatbot[0].email
+        mailService.sendMail(emailTo, email, name, phone, msg)
+        
         res.status(200).json({msg: "Email sent"})
     } catch (error) {
         console.log(error)

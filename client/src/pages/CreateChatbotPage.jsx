@@ -14,9 +14,12 @@ function CreateChatbotPage() {
     secondaryColor: "#3A8CD9",
     accentColor: "#E8F2FF",
     headerText: "Chatta med oss",
+    email: "",
     inputPlaceholder: "Ställ din fråga här...",
-    url: ""
+    url: "",
+    companyName: ""
   })
+  
   const [msg, setMsg] = useState("");
   const navigate = useNavigate();
   const { isLoggedIn } = useOutletContext();
@@ -37,8 +40,10 @@ function CreateChatbotPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    if (formData.primaryColor === "" || formData.secondaryColor === "" || formData.accentColor === "" || formData.faq === "") return false;
-
+    if (formData.primaryColor === "" || formData.secondaryColor === "" || formData.accentColor === "") return false;
+    if (formData.headerText === "" || formData.inputPlaceholder === "") return false;
+    if (formData.companyName === "" || formData.email === "" || formData.url === "") return false;
+    
     let res = await fetchService.fetchRes("/api/create", "POST", { chatbotData: formData});
     if (res.status >= 400) {
       setMsg(":(");
@@ -121,6 +126,7 @@ function CreateChatbotPage() {
       <div className="flex flex-col gap-5 items-center w-full mb-20">
           
         <input className="w-full border p-2 lg:w-2/3" type="text" name="companyName" placeholder="Company Name" onChange={handleInputChange}/>
+        <input className="w-full border p-2 lg:w-2/3" type="text" name="email" placeholder="Email for recieving messages" onChange={handleInputChange}/>
         <input className="w-full border p-2 lg:w-2/3" type="text" name="url" placeholder="URL to your about page" onChange={handleInputChange}/>
         <button onClick={handleSubmit} className="bg-primary text-white p-2 w-full lg:w-2/3">Create Chatbot!</button>
       </div>

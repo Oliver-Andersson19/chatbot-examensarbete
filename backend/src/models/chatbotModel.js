@@ -1,7 +1,7 @@
 import connection from "../config/database.js";
 import cheerioWebscrape from "../services/webscrape.js"
 
-async function createChatbot(headerText, inputPlaceholder, url, colorScheme, companyName, userId) {
+async function createChatbot(headerText, inputPlaceholder, url, colorScheme, companyName, email, userId) {
 
     const [insertColorScheme] = await connection.execute(
         "INSERT INTO colorScheme (primaryColor, secondaryColor, accentColor) VALUES (?, ?, ?)",
@@ -9,8 +9,8 @@ async function createChatbot(headerText, inputPlaceholder, url, colorScheme, com
     );
 
     const [insertChatbot] = await connection.execute(
-        "INSERT INTO chatbots (headerText, inputPlaceholder, colorSchemeId, companyName, userId) VALUES (?, ?, ?, ?, ?)",
-        [headerText, inputPlaceholder, insertColorScheme.insertId, companyName, userId]
+        "INSERT INTO chatbots (headerText, inputPlaceholder, colorSchemeId, companyName, email, userId) VALUES (?, ?, ?, ?, ?, ?)",
+        [headerText, inputPlaceholder, insertColorScheme.insertId, companyName, email, userId]
     );
 
     const [chatbotDataURLId] = await connection.execute(
@@ -28,7 +28,7 @@ async function createChatbot(headerText, inputPlaceholder, url, colorScheme, com
     return insertChatbot.insertId;
 }
 
-// redo
+
 async function getChatbotURL(chatbotId) {
     const [chatbotDataURL] = await connection.execute(
         "SELECT URL FROM chatbotDataURLs WHERE chatbotId = ?",
@@ -38,7 +38,7 @@ async function getChatbotURL(chatbotId) {
     return chatbotDataURL;
 }
 
-// redo
+
 async function getChatbotsByUserId(userId) {
     const [chatbots] = await connection.execute(
         `SELECT cb.id, cb.colorSchemeId, cb.userId, cb.companyName, cb.scriptTag
@@ -50,4 +50,10 @@ async function getChatbotsByUserId(userId) {
     return chatbots;
 }
 
-export default { createChatbot, getChatbotURL, getChatbotsByUserId };
+async function getChatbotById(id) {
+    const [chatbot] = await connection.execute(`SELECT * FROM chatbots WHERE id = ?`, [id]);
+    
+    return chatbot;
+}
+
+export default { createChatbot, getChatbotURL, getChatbotsByUserId, getChatbotById };

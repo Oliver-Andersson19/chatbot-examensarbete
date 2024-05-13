@@ -62,17 +62,17 @@ async function getChatbotHTML(id) {
             
             <div class="form-container">
                 <label>E-post*</label>
-                <input type="text" placeholder="E-postaddress"/>
+                <input type="text" placeholder="E-postaddress" class="contact-email"/>
 
                 
                 <label>Namn</label>
-                <input type="text" placeholder="Förnamn Efternamn"/>
+                <input type="text" placeholder="Förnamn Efternamn" class="contact-name"/>
                 
                 <label>Telefon</label>
-                <input type="text" placeholder="Telefonnummer"/>
+                <input type="text" placeholder="Telefonnummer" class="contact-phone"/>
                 
                 <label>Meddelande*</label>
-                <textarea rows="5" placeholder="Skriv ditt meddelande"/></textarea>
+                <textarea rows="5" placeholder="Skriv ditt meddelande" class="contact-msg"/></textarea>
 
                 <button class="contact-send-btn">SKICKA</button>
             </div>
@@ -132,7 +132,13 @@ async function getChatbotJS(id, ip) {
 
     const contactBtn = document.querySelector('.chatbot-wrapper .chatbot-window .contact-link')
     const backBtn = document.querySelector('.chatbot-wrapper .chatbot-window .contact-view .back-btn')
+    const contactSendBtn = document.querySelector('.chatbot-wrapper .chatbot-window .contact-view .contact-send-btn')
     
+
+    const contactEmailField = document.querySelector('.chatbot-wrapper .chatbot-window .contact-email')
+    const contactNameField = document.querySelector('.chatbot-wrapper .chatbot-window .contact-name')
+    const contactPhoneField = document.querySelector('.chatbot-wrapper .chatbot-window .contact-phone')
+    const contactMsgField = document.querySelector('.chatbot-wrapper .chatbot-window .contact-msg')
 
     openBtn.addEventListener('click', () => {
         chatWindow.classList.toggle("show");
@@ -152,6 +158,12 @@ async function getChatbotJS(id, ip) {
     backBtn.addEventListener('click', () => {
         contactView.classList.toggle("hide");
     })
+
+    contactSendBtn.addEventListener('click', async () => {
+        const res = await sendMail();
+        console.log(res)
+    })
+
 
     sendBtn.addEventListener('click', () => {
         handleSubmit(inputField.value);
@@ -210,6 +222,33 @@ async function getChatbotJS(id, ip) {
         }
 
         const res = await fetch('https://${ip}:8080/api/query/?id=${id}', options)
+        const data = await res.json()
+
+        return data.answer
+    }
+
+
+    async function sendMail() {
+        const email = contactEmailField.value
+        const name = contactNameField.value
+        const phone = contactPhoneField.value
+        const msg = contactMsgField.value
+
+        const options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                email: email,
+                name: name,
+                phone: phone,
+                msg: msg,
+            
+            })
+        }
+
+        const res = await fetch('https://${ip}:8080/api/mail/?id=${id}', options)
         const data = await res.json()
 
         return data.answer
