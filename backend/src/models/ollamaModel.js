@@ -60,10 +60,11 @@ async function createChainForId(id) {
         embeddings
     );
 
+    console.log(data)
     
     const promptTemplate = `
     You are a helpful chatbot implemented on a Website. Limit your answers to a maximum of 2 sentences.
-    If needed use the content of the website provided in the context to answer the humans question. Do not mention the provided context.
+    If needed use the content of the websites FAQ provided in the context to answer the humans question. Do not mention the provided context.
     Do not use the content of the context if it is not relevant to the question.
     \n\nContext: {context}\n\nQuestion: {question}\nShort Answer:`;
 
