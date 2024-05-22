@@ -42,8 +42,7 @@ function ViewChatbot(props) {
 
             <ol className="list-disc ml-10 mb-4">
                 <li>Copy the script-tag from the code below</li>
-                <li>Lorem ipsum dolor sit amet consectetur adipisicing </li>
-                <li>Copy the script-tag from the code below</li>
+                <li>Insert it on your webpage!</li>
             </ol>
 
             <p className="mb-16 ml-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit ad vitae veritatis, vel molestias vero nam provident quis quibusdam ullam accusamus, facere nulla? Fugiat neque voluptatum id repellat quae eius.</p>

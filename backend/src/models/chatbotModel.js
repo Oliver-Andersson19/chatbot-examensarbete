@@ -51,7 +51,10 @@ async function getChatbotsByUserId(userId) {
 }
 
 async function getChatbotById(id) {
-    const [chatbot] = await connection.execute(`SELECT * FROM chatbots WHERE id = ?`, [id]);
+    const [chatbot] = await connection.execute(
+        `SELECT * FROM chatbots WHERE id = ?`,
+        [id]
+    );
     
     return chatbot;
 }
