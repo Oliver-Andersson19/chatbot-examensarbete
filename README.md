@@ -35,4 +35,6 @@ underlättade strukturerad datalagring.
     <img src="docs/images/data.png" width="500" alt="start page">
     <h2>Scripttag som används för implementering - Byggverktyget</h2>
     <img src="docs/images/script.png" width="500" alt="start page">
+    <h2>Chatbot som ligger live på en tom Webflow sida - Byggverktyget</h2>
+    <img src="docs/images/live.png" width="500" alt="start page">
 </p>
