@@ -27,6 +27,12 @@ underlättade strukturerad datalagring.
 # Bilder
 
 <p align="center">
-  <img src="docs/images/start.png" width="350" title="hover text">
-  <img src="docs/images/start.png" width="350" alt="start page">
+    <h2>Startsida</h2>
+    <img src="docs/images/start.png" width="500" alt="start page">
+    <h2>Utseende anpassning</h2>
+    <img src="docs/images/colors.png" width="500" alt="start page">
+    <h2>Data anpassning</h2>
+    <img src="docs/images/data.png" width="500" alt="start page">
+    <h2>Scripttag som används för implementering</h2>
+    <img src="docs/images/script.png" width="500" alt="start page">
 </p>
