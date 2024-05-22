@@ -1,14 +1,32 @@
 # Chatbot Examensarbete
 
-Detta repository innehåller utvecklingen av ett chattbotsystem som är utformat för att förstå användares frågor och ge relevanta svar. Chattboten använder en
-serverbaserad backend och kan enkelt integreras på webbsidor genom att inkludera en script-tag. Den använder en lokal AI-modell för att förstå frågor.
+Detta projekt utgör mitt examensarbete som sträckte sig över 6 veckor och motsvarade 30
+YH-poäng.
 
-* Backend är Node.js och Express för att hantera API-rutter och HTTP/HTTPS-förfrågningar.
+Sammanfattningsvis har utvecklingen av chatboten varit framgångsrik och levererat en
+fungerande lösning för att förbättra användarinteraktionen på webbplatser. Genom att
+integrera enkelhet, prestanda och felhantering har chatboten möjliggjort snabb och tillgänglig
+support för användare. Den mest lämpliga AI-modellen visade sig vara LLama 3, som valdes
+för dess prestanda och kostnadseffektivitet. Beslutet att använda en lokal AI-modell istället
+för OpenAI’s API var på grund av kostnadsskäl. För att AI-modellen skulle kunna ge
+personliga och korrekta svar om företagen implementerades en lösning där användare klistrar
+in URLen till sin FAQ/Om-sida och sedan låter AI-modellen använda den informationen.
+Data om företagen och chatbotens inställningar lagrades i en SQL-databas, vilket
+underlättade strukturerad datalagring.
 
-* Använder en SQL-databas (MySQL2 i Node.js) för strukturerad datalagring.
+- Backend är Node.js + Express för att hantera API-rutter och HTTP/HTTPS-förfrågningar.
 
-* Användarautentisering: Implementerar JWT (JSON Web Token) för autentisering av användarkonton.
+- Använder en SQL-databas för lagring utav anpassningar och inställningar gjorda för chatbotsen.
 
-* Lokal AI-modell (Llama 3 av Meta AI)
+- JWT (JSON Web Token) för autentisering av användarkonton.
 
-* Chattbotens frontend är utvecklad med HTML, CSS, JavaScript och React.js + TailwindCSS.
+- Lokal AI-modell (Llama 3 av Meta AI)
+
+- Byggverktyget för chatbotsen är utvecklat i React.js + TailwindCSS.
+
+# Bilder
+
+<p align="center">
+  <img src="docs/images/start.png" width="350" title="hover text">
+  <img src="docs/images/start.png" width="350" alt="start page">
+</p>
