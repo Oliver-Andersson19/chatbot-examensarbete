@@ -6,11 +6,11 @@ YH-poäng.
 Sammanfattningsvis har utvecklingen av chatboten varit framgångsrik och levererat en
 fungerande lösning för att förbättra användarinteraktionen på webbplatser. Genom att
 integrera enkelhet, prestanda och felhantering har chatboten möjliggjort snabb och tillgänglig
-support för användare. Den mest lämpliga AI-modellen visade sig vara LLama 3, som valdes
+support för användare.
+Den mest lämpliga AI-modellen visade sig vara LLama 3, som valdes
 för dess prestanda och kostnadseffektivitet. Beslutet att använda en lokal AI-modell istället
-för OpenAI’s API var på grund av kostnadsskäl. För att AI-modellen skulle kunna ge
-personliga och korrekta svar om företagen implementerades en lösning där användare klistrar
-in URLen till sin FAQ/Om-sida och sedan låter AI-modellen använda den informationen.
+för OpenAI’s API var på grund av kostnadsskäl.
+För att AI-modellen skulle kunna ge personliga och korrekta svar om företagen implementerades en lösning där användare klistrar in URLen till sin FAQ/Om-sida och sedan låter AI-modellen använda den informationen.
 Data om företagen och chatbotens inställningar lagrades i en SQL-databas, vilket
 underlättade strukturerad datalagring.
 
@@ -27,12 +27,12 @@ underlättade strukturerad datalagring.
 # Bilder
 
 <p align="center">
-    <h2>Startsida</h2>
+    <h2>Startsida - Byggverktyget</h2>
     <img src="docs/images/start.png" width="500" alt="start page">
-    <h2>Utseende anpassning</h2>
+    <h2>Utseende anpassning - Byggverktyget</h2>
     <img src="docs/images/colors.png" width="500" alt="start page">
-    <h2>Data anpassning</h2>
+    <h2>Data anpassning - Byggverktyget</h2>
     <img src="docs/images/data.png" width="500" alt="start page">
-    <h2>Scripttag som används för implementering</h2>
+    <h2>Scripttag som används för implementering - Byggverktyget</h2>
     <img src="docs/images/script.png" width="500" alt="start page">
 </p>
