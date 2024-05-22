@@ -64,15 +64,15 @@ chattboten på olika plattformar.
     <h2>Startsida - Byggverktyget</h2>
     <img src="docs/images/start.png" width="100%" alt="start page">
     <h2>Utseende anpassning - Byggverktyget</h2>
-    <img src="docs/images/colors.png" width="500" alt="start page">
+    <img src="docs/images/colors.png" width="100%" alt="start page">
     <h2>Data anpassning - Byggverktyget</h2>
-    <img src="docs/images/data.png" width="500" alt="start page">
+    <img src="docs/images/data.png" width="100%" alt="start page">
     <h2>Scripttag som används för implementering - Byggverktyget</h2>
-    <img src="docs/images/script.png" width="500" alt="start page">
+    <img src="docs/images/script.png" width="100%" alt="start page">
     <h2>Chatbot som ligger live på en tom Webflow sida - Chatbot</h2>
-    <img src="docs/images/live.png" width="500" alt="start page">
+    <img src="docs/images/live.png" width="100%" alt="start page">
     <h2>Hantering utav otydligt prompt - Chatbot</h2>
-    <img src="docs/images/err.png" width="500" alt="start page">
+    <img src="docs/images/err.png" width="100%" alt="start page">
     <h2>Responstider - Chatbot</h2>
-    <img src="docs/images/times.png" width="500" alt="start page">
+    <img src="docs/images/times.png" width="100%" alt="start page">
 </p>
