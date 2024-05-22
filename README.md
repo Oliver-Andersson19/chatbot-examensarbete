@@ -62,7 +62,7 @@ chattboten på olika plattformar.
 
 <p align="center">
     <h2>Startsida - Byggverktyget</h2>
-    <img src="docs/images/start.png" width="500" alt="start page">
+    <img src="docs/images/start.png" width="100%" alt="start page">
     <h2>Utseende anpassning - Byggverktyget</h2>
     <img src="docs/images/colors.png" width="500" alt="start page">
     <h2>Data anpassning - Byggverktyget</h2>
