@@ -8,11 +8,10 @@ fungerande lösning för att förbättra användarinteraktionen på webbplatser.
 integrera enkelhet, prestanda och felhantering har chatboten möjliggjort snabb och tillgänglig
 support för användare.
 Den mest lämpliga AI-modellen visade sig vara LLama 3, som valdes
-för dess prestanda och kostnadseffektivitet. Beslutet att använda en lokal AI-modell istället
+för dess prestanda och effektivitet. Beslutet att använda en lokal AI-modell istället
 för OpenAI’s API var på grund av kostnadsskäl.
-För att AI-modellen skulle kunna ge personliga och korrekta svar om företagen implementerades en lösning där användare klistrar in URLen till sin FAQ/Om-sida och sedan låter AI-modellen använda den informationen.
-Data om företagen och chatbotens inställningar lagrades i en SQL-databas, vilket
-underlättade strukturerad datalagring.
+För att AI-modellen skulle kunna ge personliga och korrekta svar om företagen implementerades en lösning där användare klistrar in URLen till sin FAQ/Om-sida och sedan låter AI-modellen använda den scrape'ade informationen.
+Data om företaget och chatbotens inställningar lagrades i en SQL-databas.
 
 - Backend är Node.js + Express för att hantera API-rutter och HTTP/HTTPS-förfrågningar.
 
